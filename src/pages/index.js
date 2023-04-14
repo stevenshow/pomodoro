@@ -64,7 +64,7 @@ export default function Home() {
 
 	return (
 		<div className='flex flex-col items-center justify-center min-h-screen'>
-			<div className='flex space-x-10 mb-5'>
+			<div className='flex space-x-5 mb-5'>
 				<button
 					className={`text-xl p-1 rounded border-2 ${
 						timerType === 'pomodoro' ? 'border-slate-500' : 'border-transparent'
