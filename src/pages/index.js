@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import StartButton from '@/components/StartButton';
+import RestartButton from '@/components/RestartButton';
+import PauseButton from '@/components/PauseButton';
 
 export default function Home() {
 	const [timeRemaining, setTimeRemaining] = useState(25 * 60); // 25 minutes in seconds
@@ -13,18 +15,29 @@ export default function Home() {
 				setTimeRemaining((prevTime) => prevTime - 1);
 			}, 1000);
 			setTimerId(id);
-
-			// Clear the interval when the time runs out
-			setTimeout(() => {
-				clearInterval(timerId);
-				setTimerRunning(false);
-			}, timeRemaining * 1000);
 		} else {
-			// Pause the timer
+			pauseTimer();
+		}
+	};
+
+	const pauseTimer = () => {
+		clearInterval(timerId);
+		setTimerRunning(false);
+	};
+
+	const restartTimer = () => {
+		clearInterval(timerId);
+		setTimeRemaining(25 * 60);
+		setTimerRunning(false);
+	};
+
+	// Handle timer completion
+	useEffect(() => {
+		if (timeRemaining <= 0) {
 			clearInterval(timerId);
 			setTimerRunning(false);
 		}
-	};
+	}, [timeRemaining, timerId]);
 
 	const minutes = Math.floor(timeRemaining / 60);
 	const seconds = timeRemaining % 60;
@@ -42,6 +55,10 @@ export default function Home() {
 			</div>
 			<div className='mt-8'>
 				<StartButton onClick={startTimer} running={timerRunning} />
+				<div className='flex mt-5 justify-between'>
+					<RestartButton onClick={restartTimer} />
+					<PauseButton onClick={pauseTimer} />
+				</div>
 			</div>
 		</div>
 	);

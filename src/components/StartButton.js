@@ -1,4 +1,4 @@
-import { MdPowerSettingsNew } from 'react-icons/md';
+import { MdPowerSettingsNew, MdRestartAlt } from 'react-icons/md';
 
 const StartButton = ({ onClick, running }) => {
 	return (
