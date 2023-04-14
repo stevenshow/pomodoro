@@ -59,6 +59,28 @@ export default function Home() {
 		}`;
 	}, [timeRemaining]);
 
+	useEffect(() => {
+		if (timeRemaining === 0) {
+			// Request permission for notifications
+			Notification.requestPermission().then((permission) => {
+				// If permission is granted, show the notification
+				if (permission === 'granted') {
+					new Notification(
+						`${timerType === 'pomodoro' ? 'Break Time!' : 'Get Back to Work!'}`
+					);
+				}
+			});
+		}
+	}, [timeRemaining]);
+
+	useEffect(() => {
+		// Check if the browser supports notifications
+		if ('Notification' in window) {
+			// Request permission for notifications
+			Notification.requestPermission().then((permission) => {});
+		}
+	}, []);
+
 	const minutes = Math.floor(timeRemaining / 60);
 	const seconds = timeRemaining % 60;
 
