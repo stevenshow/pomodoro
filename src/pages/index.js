@@ -53,6 +53,12 @@ export default function Home() {
 		}
 	}, [timerType]);
 
+	useEffect(() => {
+		document.title = `${minutes}:${seconds < 10 ? '0' : ''}${seconds} | ${
+			timerType === 'pomodoro' ? 'Focus Up' : 'Relax Yourself'
+		}`;
+	}, [timeRemaining]);
+
 	const minutes = Math.floor(timeRemaining / 60);
 	const seconds = timeRemaining % 60;
 
