@@ -31,7 +31,6 @@ export default function Home() {
 
 	return (
 		<div className='flex flex-col items-center justify-center min-h-screen'>
-			<h1 className='text-3xl mb-8'>Pomodoro Timer</h1>
 			<div className='flex items-center justify-center'>
 				<span className='text-6xl'>
 					{minutes < 10 ? `0${minutes}` : minutes}
