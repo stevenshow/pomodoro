@@ -8,7 +8,6 @@ export default function Document() {
 					name='description'
 					content='A little Pomodoro timer for heightened effectiveness'
 				/>
-				<title>Steve&apos;s Pomodoro Timer</title>
 			</Head>
 			<body>
 				<Main />
